@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XENON - Premium Like API</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+        body { font-family: 'Plus Jakarta Sans', sans-serif; background-color: #07090e; color: #f3f4f6; }
+        .glow-box { box-shadow: 0 0 30px rgba(99, 102, 241, 0.15); }
+        .glow-btn { box-shadow: 0 4px 20px rgba(99, 102, 241, 0.4); }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between overflow-x-hidden">
+
+    <header class="w-full p-4 flex justify-between items-center bg-[#0d111a]/80 backdrop-blur-md border-b border-gray-800 sticky top-0 z-50">
+        <div class="flex items-center gap-2">
+            <span class="w-3 h-3 bg-emerald-500 rounded-full animate-ping"></span>
+            <span class="text-xs font-bold text-emerald-400 tracking-wider">API LIVE</span>
+        </div>
+        
+        <div class="flex items-center gap-3">
+            <button onclick="openLoginModal()" id="loginBtnHeader" class="bg-indigo-600 hover:bg-indigo-700 text-white font-extrabold px-5 py-2.5 rounded-xl shadow-lg transition-all duration-300 transform active:scale-95 text-xs flex items-center gap-2 glow-btn cursor-pointer">
+                <i class="fa-solid fa-user-shield"></i> LOG IN
+            </button>
+            
+            <div id="loggedHeaderInfo" class="hidden flex items-center gap-2 bg-gray-900 border border-gray-700 px-3 py-1.5 rounded-xl">
+                <span class="text-xs font-mono font-bold text-emerald-400">VIP ACTIVE</span>
+                <button onclick="logoutUser()" class="text-xs text-red-400 hover:text-red-300 font-bold ml-1 cursor-pointer" title="Logout"><i class="fa-solid fa-power-off"></i></button>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex-grow flex flex-col items-center justify-center p-4 max-w-md mx-auto w-full">
+        <div class="w-full bg-gradient-to-r from-purple-900/40 via-indigo-900/40 to-blue-900/40 border border-indigo-500/30 rounded-3xl p-6 text-center glow-box mb-6">
+            <h2 class="text-xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-indigo-400 to-pink-400 mb-2">
+                NEED LIKE API KEY ?
+            </h2>
+            <p class="text-xs text-gray-300 font-semibold mb-4 tracking-wide">VERY LOW PRICE • HIGH SPEED • INSTANT DELIVERY</p>
+            <a href="https://t.me/Xenon_All_Bot" target="_blank" class="inline-flex items-center justify-center gap-2 w-full bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 text-white font-bold py-3 px-4 rounded-xl shadow-md transition transform active:scale-95">
+                <i class="fa-brands fa-telegram text-lg"></i> DM OWNER HERE 👇 (@Xenon_All_Bot)
+            </a>
+        </div>
+
+        <div id="dashboardSection" class="w-full bg-[#121824] border border-gray-800 rounded-3xl p-6 hidden glow-box mb-6">
+            <div class="flex items-center justify-between mb-4 border-b border-gray-800 pb-3">
+                <span class="text-xs text-gray-400 font-bold uppercase tracking-wider">Access Info</span>
+                <button onclick="logoutUser()" class="text-xs text-red-400 hover:text-red-300 font-bold cursor-pointer">LOGOUT</button>
+            </div>
+            <div class="space-y-3 mb-6">
+                <div class="bg-gray-900/60 p-3 rounded-xl border border-gray-800">
+                    <p class="text-[11px] text-gray-400 font-semibold">YOUR KEY:</p>
+                    <p id="displayKey" class="text-sm font-mono font-bold text-indigo-400 truncate"></p>
+                </div>
+                <div class="bg-gray-900/60 p-3 rounded-xl border border-gray-800">
+                    <p class="text-[11px] text-gray-400 font-semibold">YOUR LIMIT:</p>
+                    <p id="displayLimit" class="text-lg font-extrabold text-emerald-400">Loading...</p>
+                </div>
+            </div>
+            <a href="https://t.me/Xenon_All_Bot" target="_blank" class="w-full mb-4 bg-gray-800 hover:bg-gray-700 text-gray-200 text-xs font-bold py-3 rounded-xl flex items-center justify-center gap-2 border border-gray-700 transition">
+                <i class="fa-brands fa-telegram text-indigo-400"></i> OWNER DM FOR GROW LIMIT
+            </a>
+            <button onclick="openLikeModal()" class="w-full bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-400 hover:to-teal-500 text-white font-black py-4 px-6 rounded-2xl shadow-lg transition transform active:scale-95 text-base tracking-wide flex items-center justify-center gap-3 glow-btn cursor-pointer">
+                <i class="fa-solid fa-bolt text-lg"></i> WEB TO SENT LIKE
+            </button>
+        </div>
+    </main>
+
+    <footer class="w-full py-4 text-center text-[11px] text-gray-500 border-t border-gray-900 bg-[#07090e]">
+        Powered By <span class="text-indigo-400 font-bold">XENON Like API</span> © 2026
+    </footer>
+
+    <div id="loginModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-[#121824] border border-gray-800 w-full max-w-sm rounded-3xl p-6 glow-box shadow-2xl relative">
+            <h3 class="text-lg font-extrabold text-white mb-1 text-center">PLEASE ENTER ACCESS KEY</h3>
+            <p class="text-xs text-gray-400 text-center mb-5">ACCES KEY IS YOUR LIKE API KEY</p>
+            <form onsubmit="handleLogin(event)" class="space-y-4">
+                <div>
+                    <input type="text" id="accessKeyInput" placeholder="Enter your API key..." required class="w-full bg-gray-900 border border-gray-700 rounded-2xl px-4 py-3 text-sm text-white placeholder-gray-500 focus:outline-none focus:border-indigo-500 transition">
+                </div>
+                <button type="submit" id="loginSubmitBtn" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-extrabold py-3.5 rounded-2xl shadow-lg transition transform active:scale-95 text-sm cursor-pointer">
+                    LOGIN NOW
+                </button>
+            </form>
+            <button onclick="closeLoginModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white text-sm cursor-pointer">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+        </div>
+    </div>
+
+    <div id="likeModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4 hidden">
+        <div class="bg-[#121824] border border-gray-800 w-full max-w-md rounded-3xl p-6 glow-box shadow-2xl max-h-[90vh] overflow-y-auto">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-base font-extrabold text-white"><i class="fa-solid fa-bolt text-indigo-400"></i> SENT LIKE PANEL</h3>
+                <button onclick="closeLikeModal()" class="text-gray-400 hover:text-white cursor-pointer"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <form onsubmit="sendLikeAPI(event)" class="space-y-4">
+                <div>
+                    <label class="text-xs text-gray-400 font-semibold mb-1 block">ENTER UID</label>
+                    <input type="number" id="targetUid" placeholder="Enter user UID..." required class="w-full bg-gray-900 border border-gray-700 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-indigo-500">
+                </div>
+                <div>
+                    <label class="text-xs text-gray-400 font-semibold mb-1 block">ENTER SERVER</label>
+                    <select id="targetServer" class="w-full bg-gray-900 border border-gray-700 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:border-indigo-500">
+                        <option value="BD">BD (Bangladesh)</option>
+                        <option value="IND">IND (India)</option>
+                    </select>
+                </div>
+                <div class="flex gap-3 pt-2">
+                    <button type="button" onclick="closeLikeModal()" class="flex-1 bg-gray-800 hover:bg-gray-700 text-gray-300 font-bold py-3 rounded-xl text-xs transition cursor-pointer">CANCEL</button>
+                    <button type="submit" id="submitLikeBtn" class="flex-1 bg-indigo-600 hover:bg-indigo-700 text-white font-extrabold py-3 rounded-xl text-xs transition shadow-lg cursor-pointer">SENT LIKE</button>
+                </div>
+            </form>
+            <div id="resultContainer" class="mt-4 hidden">
+                <div class="flex justify-between items-center mb-1">
+                    <p class="text-xs text-gray-400 font-semibold">API RESPONSE:</p>
+                    <button onclick="copyApiResponse()" id="copyBtn" class="text-[11px] text-indigo-400 hover:text-indigo-300 font-bold bg-indigo-950/60 border border-indigo-800/60 px-2.5 py-1 rounded-lg transition cursor-pointer flex items-center gap-1.5 active:scale-95">
+                        <i class="fa-regular fa-copy"></i> COPY
+                    </button>
+                </div>
+                <pre id="apiResultText" class="bg-gray-950 border border-gray-800 p-3 rounded-xl text-xs font-mono text-emerald-400 overflow-x-auto max-h-40"></pre>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let currentKey = localStorage.getItem('silent_api_key') || '';
+
+        window.onload = function() {
+            if(currentKey) {
+                verifyAndLoadSession(currentKey);
+            }
+        };
+
+        function openLoginModal() { document.getElementById('loginModal').classList.remove('hidden'); }
+        function closeLoginModal() { document.getElementById('loginModal').classList.add('hidden'); }
+        function openLikeModal() { document.getElementById('likeModal').classList.remove('hidden'); document.getElementById('resultContainer').classList.add('hidden'); }
+        function closeLikeModal() { document.getElementById('likeModal').classList.add('hidden'); }
+
+        async function handleLogin(e) {
+            e.preventDefault();
+            const keyInput = document.getElementById('accessKeyInput');
+            const key = keyInput.value.trim();
+            const loginBtn = document.getElementById('loginSubmitBtn');
+            if(!key) return;
+
+            loginBtn.innerText = "VERIFYING...";
+            loginBtn.disabled = true;
+            
+            try {
+                const res = await fetch(`/verify_key?key=${encodeURIComponent(key)}`);
+                const data = await res.json();
+                
+                if(!data.success) {
+                    alert("KEY NOT FOUND IN DATABASE PLEASE BUY KEY🔑");
+                    loginBtn.innerText = "LOGIN NOW";
+                    loginBtn.disabled = false;
+                    return;
+                }
+                
+                currentKey = key;
+                localStorage.setItem('silent_api_key', key);
+                closeLoginModal();
+                verifyAndLoadSession(key);
+            } catch (err) {
+                alert("KEY NOT FOUND IN DATABASE PLEASE BUY KEY🔑");
+            } finally {
+                loginBtn.innerText = "LOGIN NOW";
+                loginBtn.disabled = false;
+                keyInput.value = '';
+            }
+        }
+
+        async function verifyAndLoadSession(key) {
+            document.getElementById('displayKey').innerText = key;
+            
+            document.getElementById('loginBtnHeader').classList.add('hidden');
+            document.getElementById('loggedHeaderInfo').classList.remove('hidden');
+            document.getElementById('dashboardSection').classList.remove('hidden');
+            
+            try {
+                const res = await fetch(`/verify_key?key=${encodeURIComponent(key)}`);
+                const data = await res.json();
+                
+                if(!data.success) {
+                    logoutUser();
+                    alert("KEY NOT FOUND IN DATABASE PLEASE BUY KEY🔑");
+                    return;
+                }
+
+                if(data.limit) {
+                    document.getElementById('displayLimit').innerText = data.limit;
+                } else {
+                    document.getElementById('displayLimit').innerText = "Active / Ready";
+                }
+            } catch(e) {
+                document.getElementById('displayLimit').innerText = "Active / Ready";
+            }
+        }
+
+        function logoutUser() {
+            localStorage.removeItem('silent_api_key');
+            currentKey = '';
+            document.getElementById('dashboardSection').classList.add('hidden');
+            document.getElementById('loggedHeaderInfo').classList.add('hidden');
+            document.getElementById('loginBtnHeader').classList.remove('hidden');
+        }
+
+        async function sendLikeAPI(e) {
+            e.preventDefault();
+            if(!currentKey) {
+                alert("Please login first!");
+                openLoginModal();
+                return;
+            }
+            const uid = document.getElementById('targetUid').value.trim();
+            const server = document.getElementById('targetServer').value;
+            const btn = document.getElementById('submitLikeBtn');
+            
+            btn.innerText = "PROCESSING...";
+            btn.disabled = true;
+
+            try {
+                const res = await fetch(`/like?uid=${uid}&server_name=${server}&key=${encodeURIComponent(currentKey)}`);
+                const data = await res.json();
+                
+                document.getElementById('resultContainer').classList.remove('hidden');
+                document.getElementById('apiResultText').innerText = JSON.stringify(data, null, 2);
+                
+                if (Array.isArray(data) && data[0] && data[0]['KEY LIMIT']) {
+                    document.getElementById('displayLimit').innerText = data[0]['KEY LIMIT'];
+                } else if (data['KEY LIMIT']) {
+                    document.getElementById('displayLimit').innerText = data['KEY LIMIT'];
+                } else if (data.error) {
+                    alert(data.error);
+                }
+
+                verifyAndLoadSession(currentKey);
+
+            } catch(err) {
+                document.getElementById('resultContainer').classList.remove('hidden');
+                document.getElementById('apiResultText').innerText = JSON.stringify({error: err.toString()}, null, 2);
+            } finally {
+                btn.innerText = "SENT LIKE";
+                btn.disabled = false;
+            }
+        }
+
+        function copyApiResponse() {
+            const textToCopy = document.getElementById('apiResultText').innerText;
+            const copyBtn = document.getElementById('copyBtn');
+
+            if (!textToCopy) return;
+
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                copyBtn.innerHTML = `<i class="fa-solid fa-check text-emerald-400"></i> COPIED!`;
+                copyBtn.classList.remove('text-indigo-400', 'border-indigo-800/60');
+                copyBtn.classList.add('text-emerald-400', 'border-emerald-800/60');
+
+                setTimeout(() => {
+                    copyBtn.innerHTML = `<i class="fa-regular fa-copy"></i> COPY`;
+                    copyBtn.classList.remove('text-emerald-400', 'border-emerald-800/60');
+                    copyBtn.classList.add('text-indigo-400', 'border-indigo-800/60');
+                }, 2000);
+            }).catch(err => {
+                alert('Failed to copy text!');
+            });
+        }
+    </script>
+</body>
+</html>

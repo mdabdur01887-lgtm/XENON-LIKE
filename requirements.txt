@@ -1,0 +1,8 @@
+Flask[async]
+pyTelegramBotAPI
+requests
+aiohttp
+googleapis-common-protos
+pycryptodome
+protobuf
+Werkzeug
