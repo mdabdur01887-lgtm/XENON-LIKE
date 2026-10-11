@@ -74,7 +74,8 @@ def get_bd_time():
 BOT_TOKEN = os.environ.get("BOT_TOKEN") or "8779057114:AAEyZT4iPSPMUvf9Nt0LGIJucUog9U7E1PM"
 OWNER_ID  = int(os.environ.get("OWNER_ID") or 8008057402)
 
-GITHUB_TOKEN  = os.environ.get("GITHUB_TOKEN") or "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""
+GITHUB_TOKEN  = os.environ.get("GITHUB_TOKEN") or "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"
+"
 GITHUB_REPO   = "XENON-LIKE"
 GITHUB_USER   = "pritrl"
 GITHUB_BRANCH = "main"
